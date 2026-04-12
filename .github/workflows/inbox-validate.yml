@@ -1,0 +1,41 @@
+# 在 Pull Request 与推送到 main 时校验 inbox 条目的 frontmatter 与必要标题。
+# 在 GitHub：Settings → Branches → Branch protection rules 中为 main 勾选
+# "Require status checks to pass before merging"，并选中本 workflow 任务名，
+# 合并前才会被「硬」挡住。
+
+name: inbox validate
+
+on:
+  pull_request:
+    paths:
+      - "inbox/**"
+      - "scripts/validate_inbox_frontmatter.py"
+      - "inbox/schema/**"
+      - "requirements-ci.txt"
+      - ".github/workflows/inbox-validate.yml"
+  push:
+    branches: [main]
+    paths:
+      - "inbox/**"
+      - "scripts/validate_inbox_frontmatter.py"
+      - "inbox/schema/**"
+      - "requirements-ci.txt"
+      - ".github/workflows/inbox-validate.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements-ci.txt
+
+      - name: Validate inbox frontmatter
+        run: python3 scripts/validate_inbox_frontmatter.py
