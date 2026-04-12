@@ -4,6 +4,11 @@
 
 **本信箱里存放的主要是文档**：以 Markdown 文件为主，结构见下文「文档结构」。
 
+- **人类说明**：本文件。  
+- **Agent 写入契约**：[`AGENT.md`](./AGENT.md)。  
+- **Frontmatter 机器校验**：[`schema/frontmatter.schema.json`](./schema/frontmatter.schema.json)；合并前由 GitHub Actions 运行 [`scripts/validate_inbox_frontmatter.py`](../scripts/validate_inbox_frontmatter.py)（见仓库根目录 `requirements-ci.txt`）。  
+- **格式样例**：[`_example-good.md`](./_example-good.md)。
+
 ---
 
 ## 文档格式（必须）
@@ -77,3 +82,21 @@ YYYY-MM-DD-<主题短名>.md
 ## 模板
 
 复制 `_TEMPLATE.md` 新建文件，填好**必要** frontmatter 与 `上下文` / `正文` 后再按需补充推荐小节。
+
+---
+
+## 本地校验（与 CI 相同）
+
+```bash
+pip install -r requirements-ci.txt
+python3 scripts/validate_inbox_frontmatter.py
+```
+
+`README.md`、`AGENT.md`、`_TEMPLATE.md` 不参与条目校验；其余 `inbox/**/*.md` 均须符合 schema 且包含 `## 上下文` 与 `## 正文`。
+
+### 在 GitHub 上把 CI 变成「合并前必须过」
+
+1. 打开仓库 **Settings** → **Branches** → **Branch protection rules**，编辑（或新增）针对 `main` 的规则。  
+2. 勾选 **Require status checks to pass before merging**。  
+3. 在检查列表中勾选 **`inbox validate / validate`**（或界面显示的同名任务）。  
+4. 保存后：PR 在未通过该校验前无法合并（即此前所说的「硬约束」依赖此设置）。
