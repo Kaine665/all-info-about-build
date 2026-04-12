@@ -98,5 +98,6 @@ python3 scripts/validate_inbox_frontmatter.py
 
 1. 打开仓库 **Settings** → **Branches** → **Branch protection rules**，编辑（或新增）针对 `main` 的规则。  
 2. 勾选 **Require status checks to pass before merging**。  
-3. 在检查列表中勾选 **`inbox validate / validate`**（或界面显示的同名任务）。  
+3. 在检查列表中勾选 **`inbox-frontmatter-check / validate (pull_request)`**（与 PR 页 **Checks** 里绿勾名称一致）。  
+   - 若曾添加过旧名 **`inbox validate / …`**，请从规则中**移除**，避免与同名「幽灵」检查冲突。  
 4. 保存后：PR 在未通过该校验前无法合并（即此前所说的「硬约束」依赖此设置）。

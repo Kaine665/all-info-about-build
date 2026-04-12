@@ -3,7 +3,9 @@
 # "Require status checks to pass before merging"，并选中本 workflow 任务名，
 # 合并前才会被「硬」挡住。
 
-name: inbox validate
+# 显示名会出现在 PR Checks 与分支保护里，格式为「本 name / job_id (pull_request)」。
+# 若出现「同名检查一条成功一条 Expected」，可改此 name 后在保护规则里只保留新名称一条。
+name: inbox-frontmatter-check
 
 on:
   pull_request:
