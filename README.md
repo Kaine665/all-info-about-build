@@ -33,8 +33,11 @@ python3 scripts/validate_inbox_frontmatter.py
 
 更细的约定与生命周期表见 [`inbox/README.md`](inbox/README.md)。
 
+委托 **Agent/Cursor** 写入零碎结论时，**仅允许新增或修改 `inbox/*.md`**；迁入根目录 `README`、`SPEC`、`docs/` 等正式位置由人类吸收后完成（契约见 [`inbox/AGENT.md`](inbox/AGENT.md)）。
+
 ## 构建与协作（索引）
 
 - **`inbox/`**：用法见上一节；目录内总说明见 [`inbox/README.md`](inbox/README.md)。  
+- **`docs/`**：非收件箱，存放已整理的参考文档；当前例如 [`docs/web-completeness-checklist.md`](docs/web-completeness-checklist.md)（网页项目完整性清单）。  
 - **CI**：修改 `inbox/` 或校验脚本时触发 **`inbox-frontmatter-check`**。  
 - **Agent 写入**：见 [`inbox/AGENT.md`](inbox/AGENT.md)。
