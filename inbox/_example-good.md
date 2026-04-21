@@ -22,4 +22,4 @@ related:
 
 ## 待决
 
-是否需要在 CI 中同步校验 `docs/` 下 Markdown（本期不做）。
+是否需要在 CI 中同步校验 [`docs/README.md`](../docs/README.md) 等元文档（本期不做）。
