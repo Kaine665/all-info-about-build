@@ -4,13 +4,13 @@
 
 ## inbox 使用方法（收件箱）
 
-`inbox/` 是**未整理信息的收件箱**（构建、分发、测试、环境等草稿），**不是**规范或产品的单一真相源；定稿内容应写入根目录 `README`、`SPEC`、`docs/` 等正式位置。
+`inbox/` 是**未整理信息的收件箱**（构建、分发、测试、环境等草稿），**不是**规范或产品的单一真相源；定稿内容应写入根目录 `README`、`SPEC` 等正式位置，或迁入团队约定的**外部知识库**。**`docs/` 仅用于本仓库自身的元文档**（维护说明），见 [`docs/README.md`](docs/README.md)，不用于存放与仓库主题无关的通用知识正文。
 
 ### 何时用、怎么用
 
 1. **有零碎结论或待决问题**、还不适合直接改正式文档时，在 `inbox/` 下**新建一篇** Markdown 文件。  
 2. **推荐文件名**：`YYYY-MM-DD-<主题短名>.md`（同日多篇可加 `-2` 等后缀）。  
-3. **不在 inbox 做同主题合并**：多一篇就多一篇；去重与正式结构在**迁出到 `docs/` / SPEC 等**时由人类流程处理（委托 Agent 写入时见 [`inbox/AGENT.md`](inbox/AGENT.md)）。  
+3. **不在 inbox 做同主题合并**：多一篇就多一篇；去重与正式结构在**迁出到 README / SPEC / 外部知识库等**时由人类流程处理（委托 Agent 写入时见 [`inbox/AGENT.md`](inbox/AGENT.md)）。  
 4. **每条文件须满足**（与 CI 校验一致，详见 [`inbox/README.md`](inbox/README.md)）：  
    - 仅 **`.md`**，UTF-8，文首 **YAML frontmatter**，至少含 `title`、`status`（`draft` | `open` | `absorbed` | `obsolete`）、`created`（`YYYY-MM-DD`）。  
    - 正文至少包含 **`## 上下文`**、**`## 正文`**。  
@@ -33,11 +33,11 @@ python3 scripts/validate_inbox_frontmatter.py
 
 更细的约定与生命周期表见 [`inbox/README.md`](inbox/README.md)。
 
-委托 **Agent/Cursor** 写入零碎结论时，**仅允许新增或修改 `inbox/*.md`**；迁入根目录 `README`、`SPEC`、`docs/` 等正式位置由人类吸收后完成（契约见 [`inbox/AGENT.md`](inbox/AGENT.md)）。
+委托 **Agent/Cursor** 写入零碎结论时，**仅允许新增或修改 `inbox/*.md`**；迁入根目录 `README`、`SPEC` 或外部文档由人类吸收后完成（契约见 [`inbox/AGENT.md`](inbox/AGENT.md)）。**勿**将通用知识正文写入 [`docs/`](docs/README.md)（该目录只放本仓库元文档）。
 
 ## 构建与协作（索引）
 
 - **`inbox/`**：用法见上一节；目录内总说明见 [`inbox/README.md`](inbox/README.md)。  
-- **`docs/`**：非收件箱，存放已整理的参考文档；当前例如 [`docs/web-completeness-checklist.md`](docs/web-completeness-checklist.md)（网页项目完整性清单）。  
+- **`docs/`**：**仅** all-info-about-build 自身的元文档（目录定位见 [`docs/README.md`](docs/README.md)），不是「仓库内知识库」。  
 - **CI**：修改 `inbox/` 或校验脚本时触发 **`inbox-frontmatter-check`**。  
 - **Agent 写入**：见 [`inbox/AGENT.md`](inbox/AGENT.md)。
