@@ -35,6 +35,7 @@ python3 scripts/validate_inbox_frontmatter.py
 
 ## 构建与协作（索引）
 
+- **`docs/`**：已整理的通用知识索引见 [`docs/README.md`](docs/README.md)（分发、支付与商店合规、Play 多语言上架等）。  
 - **`inbox/`**：用法见上一节；目录内总说明见 [`inbox/README.md`](inbox/README.md)。  
 - **CI**：修改 `inbox/` 或校验脚本时触发 **`inbox-frontmatter-check`**。  
 - **Agent 写入**：见 [`inbox/AGENT.md`](inbox/AGENT.md)。
